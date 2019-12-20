@@ -1,0 +1,58 @@
+As a result of recent fuck-up by some famous anti-theft android phone tracking app, I intend to develop an open-source alternative and define some open standards on the way.
+
+
+
+DESIGN OVERVIEW
+===============
+
+The system will consist of 3 major components:
+
+
+ANDROID APP
+-----------
+
+installable from google play, downloadable from the app site as an APK to be installed manually as a System app (to withstand a factory data reset), or as a source code from a public git repo.
+The app will be generally responding to push requests and sending data (location, WiFi APs in range etc) to the DATA COLLECTING SERVER.
+
+
+DATA COLLECTING SERVER
+----------------------
+
+provided as a payable service (just a minimal fee to cover the costs of the virtual machine that it and the MANAGEMENT CONSOLE will be running on) and as source code in a public git repo available for anyone to run his own instance.
+The server will be storing the data sent by the ANDROID APP into the DATABASE available to the MANAGEMENT CONSOLE SERVICE.
+
+
+MANAGEMENT CONSOLE SERVICE
+--------------------------
+
+A web app and its backend server (and maybe later and android app also) that allows to send push commands to the device and view the collected data from the DATABASE.
+
+
+
+ADDITIONAL FEATURES AND CONSIDERATIONS
+======================================
+
+MULTIPLE DATA COLLECTING SERVERS CONSIDERATIONS
+-----------------------------------------------
+
+Since there may be multiple DATA COLLECTING SERVERS, the ANDROID APP will have a setting specifying the URL of the one it should connect to. On devices with at least temporary root access  there will be an option to specify the URL in the file somewhere on the /System partition so that it will withstand a factory data reset.
+
+
+USER PRIVACY CONSIDERATIONS
+---------------------------
+
+In the later version there will be an option to provide a password (again as a standard app setting or in a file somewhere on /System partition) that will be used to encrypt sensitive data sent to the DATA COLLECTING SERVER and stored in the DATABASE. The backend server of the MANAGEMENT CONSOLE will be reading and sending still encrypted data to the client where the decryption will happen (ie: web browser of the user accessing the MANAGEMENT CONSOLE)
+
+
+OPEN STANDARDS
+--------------
+
+The format of HTTP requests and responses between the ANDROID APP and DATA COLLECTING SERVER will be documented and available as an open standard, so that anyone who wishes may develop either side from scratch.
+
+
+PROJECT TIMELINE
+----------------
+
+I will start with designing the above mentioned request-responses probably as soon as this weekend (21/12/2019) and hopefully finalize it by mid January 2020. After that the development of the ANDROID APP and DATA COLLECTING SERVER will start.
+Given that it's my side project I can spend only up to 15h/week on it, so it will take about 2 months at least. Help is welcome :)
+
